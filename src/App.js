@@ -4,7 +4,7 @@ import Table from './Table';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Form />
       <Table />
     </div>
