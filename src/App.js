@@ -24,13 +24,18 @@ function App() {
       .then(converted => setContacts(converted))
   }, [])
 
+  // peek data from form
+  const typing = (e) => {
+    setObjContact({...objContact, [e.target.name]:e.target.value})
+  }
+
   return (
     <div>
       {/* test */}
-      <p>{JSON.stringify(objContact)}</p>
+      {/* <p>{JSON.stringify(objContact)}</p> */}
 
       {/* output */}
-      <Form btn={btnCreate} />
+      <Form btn={btnCreate} eventKeyboard={typing} />
       <Table vector={contacts}/>
     </div>
   );

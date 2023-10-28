@@ -1,12 +1,21 @@
-function Form( {btn} ) {
+function Form( {btn, eventKeyboard} ) {
     return (
         <form>
             {/* form fields */}
-            <input type="text" placeholder="name"
+            <input type="text"
+                onChange={eventKeyboard} 
+                name="name"
+                placeholder="name"
                 className="form-control" />
-            <input type="text" placeholder="email"
+            <input type="text"
+                onChange={eventKeyboard}
+                name="email" 
+                placeholder="email"
                 className="form-control" />
-            <input type="text" placeholder="phone"
+            <input type="text" 
+                onChange={eventKeyboard}
+                name="phone"
+                placeholder="phone"
                 className="form-control" />
 
             {/* buttons conditionally shown */}
