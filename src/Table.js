@@ -1,4 +1,4 @@
-function Table() {
+function Table({ vector }) {
     return (
         <table className="table">
             <thead>
@@ -12,12 +12,21 @@ function Table() {
             </thead>
 
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                {
+                    vector.map((obj, index) => (
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{obj.name}</td>
+                            <td>{obj.email}</td>
+                            <td>{obj.phone}</td>
+                            <td>
+                                <button className="btn btn-success">
+                                    Select
+                                </button>
+                            </td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </table>
     )

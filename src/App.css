@@ -10,4 +10,7 @@ form input {
 
 form input[type="button"] {
   margin-right: 10px;
+  width: 80px;
 }
+
+
