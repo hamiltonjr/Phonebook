@@ -56,6 +56,12 @@ function App() {
     setObjContact(contact)
   }
 
+  // select contact
+  const select = (index) => {
+    setObjContact(contacts[index])
+    setBtnCreate(false)
+  }
+
   return (
     <div>
       {/* test */}
@@ -63,10 +69,11 @@ function App() {
 
       {/* output */}
       <Form btn={btnCreate} 
-            eventKeyboard={typing} 
-            create={create}
-            obj={objContact} />
-      <Table vector={contacts}/>
+        eventKeyboard={typing} 
+        create={create}
+        obj={objContact} />
+      <Table vector={contacts} 
+        selected={select} />
     </div>
   );
 }
