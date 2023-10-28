@@ -63,6 +63,29 @@ function App() {
     setBtnCreate(false)
   }
 
+    // delete contact
+    const deleteContact = () => {
+      fetch("http://localhost:8080/delete/" + objContact.id, {
+        method: "delete",
+        headers: {
+          "Content-type": "application/json",
+          "Accept": "application/json"
+        }
+      })
+      .then(data => data.json())
+      .then(converted => {
+        alert(converted.message)
+        let temp = [...contacts]
+        let index = temp.findIndex((c) => {
+          return c.id === objContact.id
+        })
+        temp.splice(index, 1)
+        setContacts(temp)
+        clean()
+      })
+    }
+  
+
   return (
     <div>
       {/* test */}
@@ -73,7 +96,8 @@ function App() {
         eventKeyboard={typing} 
         create={create}
         obj={objContact} 
-        cancel={clean} />
+        cancel={clean} 
+        deleteContact={deleteContact} />
       <Table vector={contacts} 
         selected={select} />
     </div>
