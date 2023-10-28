@@ -1,4 +1,4 @@
-function Form( {btn, eventKeyboard, create, obj, cancel, deleteContact} ) {
+function Form( {btn, eventKeyboard, createContact, obj, cancel, deleteContact, updateContact} ) {
     return (
         <form>
             {/* form fields */}
@@ -27,10 +27,11 @@ function Form( {btn, eventKeyboard, create, obj, cancel, deleteContact} ) {
                 ? 
                 <input type="button" value="Save" 
                     className="btn btn-primary" 
-                    onClick={create} />
+                    onClick={createContact} />
                 :
                 <div>
-                    <input type="button" value="Update" 
+                    <input onClick={updateContact} 
+                        type="button" value="Update" 
                         className="btn btn-warning" />
                     <input onClick={deleteContact}
                         type="button" value="Delete" 

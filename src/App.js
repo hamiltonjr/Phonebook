@@ -30,7 +30,7 @@ function App() {
   }
 
   // create contact
-  const create = () => {
+  const createContact = () => {
     fetch("http://localhost:8080/create", {
       method: "post",
       body: JSON.stringify(objContact),
@@ -46,19 +46,19 @@ function App() {
       } else {
         setContacts([...contacts, converted])
         alert("Contact created!")
-        clean()
+        cleanForm()
       }
     })
   }
 
   // clean form
-  const clean = () => {
+  const cleanForm = () => {
     setObjContact(contact)
     setBtnCreate(true)
   }
 
   // select contact
-  const select = (index) => {
+  const selectContact = (index) => {
     setObjContact(contacts[index])
     setBtnCreate(false)
   }
@@ -81,10 +81,36 @@ function App() {
         })
         temp.splice(index, 1)
         setContacts(temp)
-        clean()
+        cleanForm()
       })
     }
   
+  // update contact
+  const updateContact = () => {
+    fetch("http://localhost:8080/update", {
+      method: "put",
+      body: JSON.stringify(objContact),
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+    .then(data => data.json())
+    .then(converted => {
+      if (converted.message !== undefined) {
+        alert(converted.message)
+      } else {
+        alert("Contact updated!")
+        let temp = [...contacts]
+        let index = temp.findIndex((c) => {
+          return c.id === objContact.id
+        })
+        temp[index] = objContact
+        setContacts(temp)
+        cleanForm()
+      }
+    })
+  }
 
   return (
     <div>
@@ -94,12 +120,13 @@ function App() {
       {/* output */}
       <Form btn={btnCreate} 
         eventKeyboard={typing} 
-        create={create}
+        createContact={createContact}
         obj={objContact} 
-        cancel={clean} 
-        deleteContact={deleteContact} />
+        cancel={cleanForm} 
+        deleteContact={deleteContact} 
+        updateContact={updateContact} />
       <Table vector={contacts} 
-        selected={select} />
+        selected={selectContact} />
     </div>
   );
 }
