@@ -13,7 +13,7 @@ function App() {
   }
 
   // states
-  const [btnCreate, setBtnCreate] = useState(false)
+  const [btnCreate, setBtnCreate] = useState(true)
   const [contacts, setContacts] = useState([])
   const [objContact, setObjContact] = useState(contact)
 
@@ -29,13 +29,43 @@ function App() {
     setObjContact({...objContact, [e.target.name]:e.target.value})
   }
 
+  // create contact
+  const create = () => {
+    fetch("http://localhost:8080/create", {
+      method: "post",
+      body: JSON.stringify(objContact),
+      headers: {
+        "Content-type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+    .then(data => data.json())
+    .then(converted => {
+      if (converted.message !== undefined) {
+        alert(converted.message)
+      } else {
+        setContacts([...contacts, converted])
+        alert("Contact created!")
+        clean()
+      }
+    })
+  }
+
+  // clean form
+  const clean = () => {
+    setObjContact(contact)
+  }
+
   return (
     <div>
       {/* test */}
       {/* <p>{JSON.stringify(objContact)}</p> */}
 
       {/* output */}
-      <Form btn={btnCreate} eventKeyboard={typing} />
+      <Form btn={btnCreate} 
+            eventKeyboard={typing} 
+            create={create}
+            obj={objContact} />
       <Table vector={contacts}/>
     </div>
   );

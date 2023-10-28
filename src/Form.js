@@ -1,20 +1,23 @@
-function Form( {btn, eventKeyboard} ) {
+function Form( {btn, eventKeyboard, create, obj} ) {
     return (
         <form>
             {/* form fields */}
             <input type="text"
                 onChange={eventKeyboard} 
                 name="name"
+                value={obj.name}
                 placeholder="name"
                 className="form-control" />
             <input type="text"
                 onChange={eventKeyboard}
                 name="email" 
+                value={obj.email}
                 placeholder="email"
                 className="form-control" />
             <input type="text" 
                 onChange={eventKeyboard}
                 name="phone"
+                value={obj.phone}
                 placeholder="phone"
                 className="form-control" />
 
@@ -23,7 +26,8 @@ function Form( {btn, eventKeyboard} ) {
                 btn
                 ? 
                 <input type="button" value="Save" 
-                    className="btn btn-primary" />
+                    className="btn btn-primary" 
+                    onClick={create} />
                 :
                 <div>
                     <input type="button" value="Update" 
