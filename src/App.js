@@ -54,6 +54,7 @@ function App() {
   // clean form
   const clean = () => {
     setObjContact(contact)
+    setBtnCreate(true)
   }
 
   // select contact
@@ -71,7 +72,8 @@ function App() {
       <Form btn={btnCreate} 
         eventKeyboard={typing} 
         create={create}
-        obj={objContact} />
+        obj={objContact} 
+        cancel={clean} />
       <Table vector={contacts} 
         selected={select} />
     </div>

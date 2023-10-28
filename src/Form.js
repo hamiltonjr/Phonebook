@@ -1,4 +1,4 @@
-function Form( {btn, eventKeyboard, create, obj} ) {
+function Form( {btn, eventKeyboard, create, obj, cancel} ) {
     return (
         <form>
             {/* form fields */}
@@ -34,7 +34,8 @@ function Form( {btn, eventKeyboard, create, obj} ) {
                         className="btn btn-warning" />
                     <input type="button" value="Delete" 
                         className="btn btn-danger" />
-                    <input type="button" value="Cancel"
+                    <input onClick={cancel} 
+                        type="button" value="Cancel"
                         className="btn btn-secondary" />
                 </div> 
             }
